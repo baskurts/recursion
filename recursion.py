@@ -34,3 +34,56 @@ class recursion:
         else:
             # this is the recursive call
             return number * recursion.power(number, power - 1)
+    
+    @staticmethod
+    def computeMin(nums, i:int, min:int):
+        """Finds the minimum number is a specified list of numbers.
+
+        Args:
+            nums : Specified list
+
+        Returns:
+            int: minimum number
+        """  
+        # this is the stopping case for recursion
+        if i == len(nums):
+            return min
+        else:
+            if nums[i] <= min:
+                min = nums[i]
+            return recursion.computeMin(nums, i + 1, min)
+
+
+    @staticmethod
+    def reverse(s: str, i: int):
+        """Displays a specified string in reverse.
+
+        Args:
+            s (str): specified string
+        """   
+        if i == 0:
+            print(" is the reverse of %s using recursion." % (s))
+        else: 
+            print(s[i - 1], end ='')
+            recursion.reverse(s, i - 1)
+
+    @staticmethod
+    def recursive_search(a, first: int, size: int, target, i: int = 0, found: bool = False):
+        """Searches for a desired element in a list of elements starting at a[first].
+        Args:
+            a: the list to search
+            first (int): the list index at which the search will start
+            size (int): the number of elements to search
+            target: the element to search for
+            i (int): the counter variable used to iterate through the list
+            found (bool): the variable used to denote if the target has been found
+        Returns:
+            int: If target appears in the list, index of the element that contains the target, else -1.
+        """
+        if i < size and (i + first < len(a)):
+            if a[i + first] == target:
+                return i + first
+            else:
+                return recursion.recursive_search(a, first, size, target, i + 1, found)
+        else:
+            return -1
